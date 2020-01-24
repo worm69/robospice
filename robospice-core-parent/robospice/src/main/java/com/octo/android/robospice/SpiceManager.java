@@ -20,6 +20,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+import android.os.Build;
 import roboguice.util.temp.Ln;
 import android.app.Activity;
 import android.content.ComponentName;
@@ -1167,7 +1168,13 @@ public class SpiceManager implements Runnable {
         if (context != null) {
             checkServiceIsProperlyDeclaredInAndroidManifest(context);
             final Intent intent = new Intent(context, spiceServiceClass);
-            context.startService(intent);
+//            context.startService(intent);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                context.startForegroundService(intent);
+            } else {
+                context.startService(intent);
+            }
             success = true;
         }
 

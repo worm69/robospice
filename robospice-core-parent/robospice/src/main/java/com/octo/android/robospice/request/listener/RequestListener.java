@@ -7,7 +7,7 @@ import com.octo.android.robospice.persistence.exception.SpiceException;
  * succeed. Implement this interface to retrieve request result or to manage
  * error
  * @author jva
- * @param <RESULT>
+ * @param <RESULT> Generic class
  */
 public interface RequestListener<RESULT> {
 

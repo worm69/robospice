@@ -1,4 +1,4 @@
-/**
+/*
  * This library provides aims to provide a robust framework for executing asynchronous network requests in android.
  * It offers :
  * <ul>
@@ -8,7 +8,7 @@
  *   <li> very easy to write requests (more or less like an asynctask)
  * </ul>
  * 
- * @startuml
+ * startuml
  * abstract class SpiceActivity {
  *   - SpiceManager
  *   - List<request>
@@ -56,7 +56,7 @@
  * DataPersistenceManager *-- DataClassPersistenceManager
  * DataPersistenceManager *-- DataClassPersistenceManagerFactory
  * DataClassPersistenceManagerFactory -- DataClassPersistenceManager: create
- * @enduml
+ * enduml
  */
 package com.octo.android.robospice;
 

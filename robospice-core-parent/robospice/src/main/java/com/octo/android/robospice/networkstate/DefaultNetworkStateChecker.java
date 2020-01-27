@@ -9,8 +9,8 @@ import android.net.NetworkInfo;
 /**
  * Consider network to be available when one network connection is up, whatever
  * it is. This class will also ensure that both
- * <tt>android.permission.ACCESS_NETWORK_STATE</tt> and
- * <tt>android.permission.ACCESS_NETWORK</tt> are granted.
+ * android.permission.ACCESS_NETWORK_STATE and
+ * android.permission.ACCESS_NETWORK are granted.
  * @author sni
  */
 public class DefaultNetworkStateChecker implements NetworkStateChecker {

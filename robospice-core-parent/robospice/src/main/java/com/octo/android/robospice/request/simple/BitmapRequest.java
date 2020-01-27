@@ -112,7 +112,7 @@ public class BitmapRequest extends SpiceRequest<Bitmap> implements IBitmapReques
 
     /*
      * (non-Javadoc)
-     * @see
+     * see
      * com.octo.android.robospice.request.simple.IBitmapRequest#getCacheFile()
      */
     @Override

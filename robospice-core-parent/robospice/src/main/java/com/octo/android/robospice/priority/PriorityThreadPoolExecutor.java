@@ -4,8 +4,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.RunnableFuture;
 
 /**
- * A ThreadPoolExecutor with priority management, from <a href=
- * "http://stackoverflow.com/q/807223/693752">SOF</a> <br/>
+ * A ThreadPoolExecutor with priority management, from <a href="http://stackoverflow.com/q/807223/693752">SOF</a>
  * There are some inherent limitations to this mechanism. For instance, the
  * first runnable/callable passed to the executor doesn't go in the queue. Thus
  * the priority mechanism will only apply when tasks are queued, and this

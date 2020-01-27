@@ -12,7 +12,7 @@ import com.octo.android.robospice.request.ProgressByteProcessor;
  * memory. This class is meant to help download small images (like thumbnails).
  * If you wish to download bigger documents (or if you don't know the size of
  * your documents), you would be better using {@link OkHttpBigBinaryRequest}.
- * @author sni & jva
+ * @author sni and jva
  */
 public class OkHttpSmallBinaryRequest extends OkHttpBinaryRequest {
 

@@ -19,7 +19,7 @@ public interface RequestRunner {
     boolean isFailOnCacheError();
 
     /**
-     * @param whether
+     * @param failOnCacheError
      *            or not the runner has to fail on cache errors.
      */
     void setFailOnCacheError(boolean failOnCacheError);

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
-		<version>7</version>
+		<version>9</version>
 	</parent>
 
         <prerequisites>
@@ -100,7 +100,7 @@
 	<properties>
 		<!-- DEPENDENCIES VERSIONS -->
 		<android.version>4.1.1.4</android.version>
-		<android-platform.version>19</android-platform.version>
+		<android-platform.version>29</android-platform.version>
 		<android-annotations.version>4.1.1.4</android-annotations.version>
 		<easymock.version>3.2</easymock.version>
 		<dexmaker.version>1.1</dexmaker.version>
@@ -117,7 +117,7 @@
 		<maven-source-plugin.version>2.2.1</maven-source-plugin.version>
 		<maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
 		<maven-release-plugin.version>2.5</maven-release-plugin.version>
-		<maven-javadoc-plugin.version>2.9</maven-javadoc-plugin.version>
+		<maven-javadoc-plugin.version>3.1.1</maven-javadoc-plugin.version>
 		<maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
                 <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
@@ -136,24 +136,64 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>com.google.android</groupId>
-				<artifactId>annotations</artifactId>
-				<version>${android-annotations.version}</version>
-				<scope>provided</scope>
-			</dependency>
+
+<!--&lt;!&ndash;			https://stackoverflow.com/questions/5253029/why-arent-the-android-sdk-jars-in-any-maven-repository&ndash;&gt;-->
+<!--				<dependency>-->
+<!--					<groupId>com.google.android</groupId>-->
+<!--					<artifactId>annotations</artifactId>-->
+<!--					<version>${android.version}</version>-->
+<!--					<scope>provided</scope>-->
+<!--					<systemPath>C:/Users/E818/AppData/Local/Android/Sdk/platforms/android-29/android.jar</systemPath>-->
+<!--&lt;!&ndash;					<systemPath>${env.ANDROID_HOME}/platforms/android-${android.platform}/android.jar</systemPath>&ndash;&gt;-->
+<!--				</dependency>-->
+
 			<dependency>
 				<groupId>com.google.android</groupId>
 				<artifactId>android</artifactId>
-				<version>${android.version}</version>
-				<scope>provided</scope>
+				<version>1</version>
+				<scope>system</scope>
+				<systemPath>C:/Users/E818/.m2/repository/com/google/android/android/1/android-1.jar</systemPath>
 			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>com.google.android</groupId>-->
+<!--				<artifactId>android</artifactId>-->
+<!--				<version>1</version>-->
+<!--&lt;!&ndash;				<version>${android.version}</version>&ndash;&gt;-->
+<!--				<scope>provided</scope>-->
+<!--&lt;!&ndash;				<systemPath>C:/Users/E818/AppData/Local/Android/Sdk/platforms/android-29/android.jar</systemPath>&ndash;&gt;-->
+<!--				&lt;!&ndash;					<systemPath>${env.ANDROID_HOME}/platforms/android-${android.platform}/android.jar</systemPath>&ndash;&gt;-->
+<!--			</dependency>-->
+
+<!--			<dependency>-->
+<!--				<groupId>com.google.android</groupId>-->
+<!--				<artifactId>android-test</artifactId>-->
+<!--				<version>${android.version}</version>-->
+<!--				<scope>provided</scope>-->
+<!--				<systemPath>C:/Users/E818/AppData/Local/Android/Sdk/platforms/android-29/android.jar</systemPath>-->
+<!--				&lt;!&ndash;					<systemPath>${env.ANDROID_HOME}/platforms/android-${android.platform}/android.jar</systemPath>&ndash;&gt;-->
+<!--			</dependency>-->
+			<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>annotations</artifactId>
+			<version>${android-annotations.version}</version>
+			<scope>provided</scope>
+		</dependency>
+<!--			<dependency>-->
+<!--				<groupId>com.google.android</groupId>-->
+<!--				<artifactId>android</artifactId>-->
+<!--				<version>${android.version}</version>-->
+<!--				<scope>provided</scope>-->
+<!--			</dependency>-->
 			<dependency>
 				<groupId>com.google.android</groupId>
 				<artifactId>android-test</artifactId>
 				<version>${android.version}</version>
 				<scope>provided</scope>
 			</dependency>
+
+
+
+
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -358,7 +398,7 @@
 					<artifactId>maven-pmd-plugin</artifactId>
 					<version>${maven-pmd-plugin.version}</version>
 					<configuration>
-						<targetJdk>1.5</targetJdk>
+						<targetJdk>1.8</targetJdk>
 					</configuration>
 					<executions>
 						<execution>
@@ -636,7 +676,7 @@
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>${maven-pmd-plugin.version}</version>
 				<configuration>
-					<targetJdk>1.5</targetJdk>
+					<targetJdk>1.8</targetJdk>
 				</configuration>
 			</plugin>
 			<plugin>

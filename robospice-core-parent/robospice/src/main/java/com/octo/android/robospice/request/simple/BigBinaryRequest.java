@@ -18,7 +18,7 @@ import com.octo.android.robospice.request.ProgressByteProcessor;
  * system. This class is meant to help download big images. If you wish to
  * download smaller documents, you would be better using
  * {@link SmallBinaryRequest}.
- * @author sni & jva
+ * @author sni and jva
  */
 public class BigBinaryRequest extends BinaryRequest {
 

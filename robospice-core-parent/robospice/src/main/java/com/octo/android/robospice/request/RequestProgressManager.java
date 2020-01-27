@@ -129,9 +129,9 @@ public class RequestProgressManager {
     }
 
     /**
-     * Disable request listeners notifications for a specific request.<br/>
+     * Disable request listeners notifications for a specific request.
      * All listeners associated to this request won't be called when request
-     * will finish.<br/>
+     * will finish.
      * @param request
      *            Request on which you want to disable listeners
      * @param listRequestListener

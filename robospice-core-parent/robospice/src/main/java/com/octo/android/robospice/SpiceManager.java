@@ -55,7 +55,7 @@ import com.octo.android.robospice.request.listener.SpiceServiceAdapter;
 import com.octo.android.robospice.request.listener.SpiceServiceListener;
 
 /**
- * The instances of this class allow to acces the {@link SpiceService}. <br/>
+ * The instances of this class allow to acces the {@link SpiceService}.
  * They are tied to activities and obtain a local binding to the
  * {@link SpiceService}. When binding occurs, the {@link SpiceManager} will send
  * commadnds to the {@link SpiceService}, to execute requests, clear cache,
@@ -223,8 +223,7 @@ public class SpiceManager implements Runnable {
     }
 
     /**
-     * @return the number of current requests that should be launched ASAP (when
-     *         the spice service is bound).
+     * @return the number of current requests that should be launched ASAP (when the spice service is bound).
      */
     public int getRequestToLaunchCount() {
         return mapRequestToLaunchToRequestListener.size();
@@ -318,6 +317,8 @@ public class SpiceManager implements Runnable {
      * with the results of their {@link SpiceRequest}s. Unbinding will occur
      * syncrhonously : the method returns when all events have been unregistered
      * and when main processing thread stops.
+     * @param timeOut waiting max time (ms)
+     * @throws InterruptedException InterruptedException
      */
     public synchronized void shouldStopAndJoin(final long timeOut) throws InterruptedException {
         if (!isStarted()) {
@@ -378,6 +379,7 @@ public class SpiceManager implements Runnable {
      *            method. If an error occurs, they will be notified via their
      *            {@link RequestListener#onRequestFailure(com.octo.android.robospice.persistence.exception.SpiceException)}
      *            method.
+     *            @param <T> generic class
      */
     public <T> void getFromCache(final Class<T> clazz, final Object requestCacheKey, final long cacheExpiryDuration, final RequestListener<T> requestListener) {
         final SpiceRequest<T> request = new SpiceRequest<T>(clazz) {
@@ -398,7 +400,11 @@ public class SpiceManager implements Runnable {
     }
 
     /**
-     * @See #addListenerIfPending(Class, Object, PendingRequestListener)
+     * See #addListenerIfPending(Class, Object, PendingRequestListener)
+     * @param <T> generic class
+     * @param clazz clazz
+     * @param requestCacheKey cacheKey
+     * @param requestListener listener
      */
     @Deprecated
     public <T> void addListenerIfPending(final Class<T> clazz, final Object requestCacheKey, final RequestListener<T> requestListener) {
@@ -426,6 +432,7 @@ public class SpiceManager implements Runnable {
      *            in the cache
      * @param requestListener
      *            the listener to notify when the request will finish.
+     * @param  <T> generic class
      */
     public <T> void addListenerIfPending(final Class<T> clazz, final Object requestCacheKey, final PendingRequestListener<T> requestListener) {
         addListenerIfPending(clazz, requestCacheKey, (RequestListener<T>) requestListener);
@@ -439,6 +446,7 @@ public class SpiceManager implements Runnable {
      *            the request to execute.
      * @param requestListener
      *            the listener to notify when the request will finish.
+     * @param  <T> generic class
      */
     public <T> void execute(final SpiceRequest<T> request, final RequestListener<T> requestListener) {
         final CachedSpiceRequest<T> cachedSpiceRequest = new CachedSpiceRequest<T>(request, null, DurationInMillis.ALWAYS_RETURNED);
@@ -469,6 +477,7 @@ public class SpiceManager implements Runnable {
      *            never returned.(see {@link DurationInMillis})
      * @param requestListener
      *            the listener to notify when the request will finish
+     * @param  <T> generic class
      */
     public <T> void execute(final SpiceRequest<T> request, final Object requestCacheKey, final long cacheExpiryDuration, final RequestListener<T> requestListener) {
         final CachedSpiceRequest<T> cachedSpiceRequest = new CachedSpiceRequest<T>(request, requestCacheKey, cacheExpiryDuration);
@@ -484,6 +493,7 @@ public class SpiceManager implements Runnable {
      *            cache duration
      * @param requestListener
      *            the listener to notify when the request will finish
+     * @param  <T> generic class
      */
     public <T> void execute(final CachedSpiceRequest<T> cachedSpiceRequest, final RequestListener<T> requestListener) {
         addRequestListenerToListOfRequestListeners(cachedSpiceRequest, requestListener);
@@ -515,6 +525,7 @@ public class SpiceManager implements Runnable {
      *            sense here.
      * @param requestListener
      *            the listener to notify when the request will finish
+     * @param  <T> generic class
      */
     public <T> void getFromCacheAndLoadFromNetworkIfExpired(final SpiceRequest<T> request, final Object requestCacheKey, final long cacheExpiryDuration, final RequestListener<T> requestListener) {
         final CachedSpiceRequest<T> cachedSpiceRequest = new CachedSpiceRequest<T>(request, requestCacheKey, cacheExpiryDuration);
@@ -534,6 +545,8 @@ public class SpiceManager implements Runnable {
      * @param listener
      *            a listener that will be notified of this request's success or
      *            failure. May be null.
+     * @param  <T> generic class
+     * @param <U>  generic class
      */
     public <U, T extends U> void putInCache(final Class<U> clazz, final Object requestCacheKey, final T data, RequestListener<U> listener) {
         @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -559,6 +572,7 @@ public class SpiceManager implements Runnable {
      * @param data
      *            the data to store. Maybe null if supported by underlying
      *            ObjectPersister.
+     * @param  <T> generic class
      */
     public <T> void putInCache(final Class<? super T> clazz, final Object requestCacheKey, final T data) {
         putInCache(clazz, requestCacheKey, data, null);
@@ -576,6 +590,7 @@ public class SpiceManager implements Runnable {
      * @param listener
      *            a listener that will be notified of this request's success or
      *            failure. May be null.
+     * @param  <T> generic class
      */
     @SuppressWarnings("unchecked")
     public <T> void putInCache(final Object requestCacheKey, final T data, RequestListener<T> listener) {
@@ -592,6 +607,7 @@ public class SpiceManager implements Runnable {
      * @param data
      *            the data to store. Maybe null if supported by underlying
      *            ObjectPersister.
+     * @param  <T> generic class
      */
     @SuppressWarnings("unchecked")
     public <T> void putInCache(final Object requestCacheKey, final T data) {
@@ -607,6 +623,7 @@ public class SpiceManager implements Runnable {
      *            the class of the result of the pending request to look for.
      * @param requestCacheKey
      *            the cache key associated to the request's results.
+     * @param  <T> generic class
      */
     public <T> void cancel(final Class<T> clazz, final Object requestCacheKey) {
         final SpiceRequest<T> request = new SpiceRequest<T>(clazz) {
@@ -628,9 +645,9 @@ public class SpiceManager implements Runnable {
     // ============================================================================================
 
     /**
-     * Disable request listeners notifications for a specific request.<br/>
+     * Disable request listeners notifications for a specific request.
      * None of the listeners associated to this request will be called when
-     * request will finish.<br/>
+     * request will finish.
      * This method will ask (asynchronously) to the {@link SpiceService} to
      * remove listeners if requests have already been sent to the
      * {@link SpiceService} if the request has already been sent to the service.
@@ -729,7 +746,7 @@ public class SpiceManager implements Runnable {
     }
 
     /**
-     * Disable request listeners notifications for all requests. <br/>
+     * Disable request listeners notifications for all requests.
      * Should be called in {@link Activity#onStop}
      */
     public void dontNotifyAnyRequestListeners() {
@@ -895,14 +912,15 @@ public class SpiceManager implements Runnable {
      * @param cacheKey
      *            the key used to store and retrieve the result of the request
      *            in the cache
+     * @param <T> generic class
      * @return a future object that will hold data in cache. Calling get on this
      *         future will block until the data is actually effectively taken
      *         from cache.
-     * @throws CacheLoadingException
+     * throws CacheLoadingException
      *             Exception thrown when a problem occurs while loading data
      *             from cache.
      */
-    public <T> Future<T> getDataFromCache(final Class<T> clazz, final Object cacheKey) throws CacheLoadingException {
+    public <T> Future<T> getDataFromCache(final Class<T> clazz, final Object cacheKey)  {
         return executeCommand(new GetDataFromCacheCommand<T>(this, clazz, cacheKey));
     }
 
@@ -918,8 +936,9 @@ public class SpiceManager implements Runnable {
      *            in the cache
      * @param data
      *            the data to be saved in cache.
+     * @param <T> class generic
      * @return the data has it has been saved by an ObjectPersister in cache.
-     * @throws CacheLoadingException
+     * throws CacheLoadingException
      *             Exception thrown when a problem occurs while loading data
      *             from cache.
      */
@@ -973,6 +992,9 @@ public class SpiceManager implements Runnable {
      *            the Type of data you want to remove from cache
      * @param cacheKey
      *            the key of the object in cache
+     * @param <T> generic class
+     *
+     * @return  generic
      */
     public <T> Future<?> removeDataFromCache(final Class<T> clazz, final Object cacheKey) {
         if (clazz == null || cacheKey == null) {
@@ -986,6 +1008,8 @@ public class SpiceManager implements Runnable {
      * Remove some specific content from cache
      * @param clazz
      *            the type of data you want to remove from cache.
+     * @param <T> generic class
+     * @return  generic
      */
     public <T> Future<?> removeDataFromCache(final Class<T> clazz) {
         if (clazz == null) {
@@ -997,13 +1021,14 @@ public class SpiceManager implements Runnable {
     /**
      * Remove all data from cache. This will clear all data stored by the
      * {@link CacheManager} of the {@link SpiceService}.
+     * @return  return
      */
     public Future<?> removeAllDataFromCache() {
         return executeCommand(new RemoveAllDataFromCacheCommand(this));
     }
 
     /**
-     * Configure the behavior in case of error during reading/writing cache. <br/>
+     * Configure the behavior in case of error during reading/writing cache.
      * Specify wether an error on reading/writing cache must fail the process.
      * @param failOnCacheError
      *            true if an error must fail the process
@@ -1155,7 +1180,9 @@ public class SpiceManager implements Runnable {
     // PRIVATE METHODS : SpiceService binding management.
     // ============================================================================================
 
-    /** For testing purpose. */
+    /** For testing purpose.
+     * @return return
+     * */
     protected boolean isBound() {
         return spiceService != null;
     }

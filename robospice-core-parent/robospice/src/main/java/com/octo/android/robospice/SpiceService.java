@@ -42,7 +42,7 @@ import com.octo.android.robospice.request.notifier.SpiceServiceListenerNotifier;
 
 /**
  * This is an abstract class used to manage the cache and provide web service
- * result to an activity. <br/>
+ * result to an activity.
  * Extends this class to provide a service able to load content from web service
  * or cache (if available and enabled). You will have to implement
  * {@link #createCacheManager(Application)} to configure the
@@ -175,7 +175,7 @@ public abstract class SpiceService extends Service {
     /**
      * Creates a {@link RequestProcessorListener} for the
      * {@link RequestProcessor} used by this service. See a typical
-     * implementation : @see {@link SelfStopperRequestProcessorListener}.
+     * implementation : see {@link SelfStopperRequestProcessorListener}.
      * @return a new instance {@link RequestProcessorListener} for the
      *         {@link RequestProcessor} used by this service.
      */
@@ -281,7 +281,8 @@ public abstract class SpiceService extends Service {
             notification.icon = getApplicationInfo().icon;
             // temporary fix https://github.com/octo-online/robospice/issues/200
             PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, new Intent(), 0);
-            notification.setLatestEventInfo(this, "", "", pendingIntent);
+//          TODO:fix https://stackoverflow.com/questions/32345768/cannot-resolve-method-setlatesteventinfo
+//            notification.setLatestEventInfo(this, "", "", pendingIntent);
             notification.tickerText = null;
             notification.when = System.currentTimeMillis();
         }
@@ -347,7 +348,7 @@ public abstract class SpiceService extends Service {
     /**
      * Override this method to set the keep alive time for core threads
      * {@link #getExecutorService()}.
-     * @return the time to keep alive idle threads on {@see
+     * @return the time to keep alive idle threads on {see
      *         TimeUnit.NANOSECONDS}. Defaults to
      *         {@link #DEFAULT_THREAD_KEEP_ALIVE_TIME}.
      */

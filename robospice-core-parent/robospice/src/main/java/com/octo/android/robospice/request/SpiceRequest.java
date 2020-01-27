@@ -18,7 +18,7 @@ import com.octo.android.robospice.retry.RetryPolicy;
  * REST Requests are easier using the Request class proposed by the
  * spring-android module of RoboSpice.
  * @author sni
- * @param <RESULT>
+ * @param <RESULT> Generic class
  */
 public abstract class SpiceRequest<RESULT> implements Comparable<SpiceRequest<RESULT>> {
 
@@ -51,7 +51,7 @@ public abstract class SpiceRequest<RESULT> implements Comparable<SpiceRequest<RE
      * attempts by the RequestProcessor. Can be null (no retry). Retry policy only
      * applies when network is on. If network is down, requests are "tried" only once.
      * @param retryPolicy the new retry policy
-     * @see {@link com.octo.android.robospice.networkstate.NetworkStateChecker.NetworkStateChecker}
+     * see {link com.octo.android.robospice.networkstate.NetworkStateChecker.NetworkStateChecker}
      */
     public void setRetryPolicy(RetryPolicy retryPolicy) {
         this.retryPolicy = retryPolicy;
@@ -62,9 +62,9 @@ public abstract class SpiceRequest<RESULT> implements Comparable<SpiceRequest<RE
      * integer. Will have no effect on a request after it starts being executed.
      * @param priority
      *            the priority of request. Defaults to {@link #PRIORITY_NORMAL}.
-     * @see #PRIORITY_LOW
-     * @see #PRIORITY_NORMAL
-     * @see #PRIORITY_HIGH
+     * see #PRIORITY_LOW
+     * see #PRIORITY_NORMAL
+     * see #PRIORITY_HIGH
      */
     public void setPriority(int priority) {
         if (priority < 0) {

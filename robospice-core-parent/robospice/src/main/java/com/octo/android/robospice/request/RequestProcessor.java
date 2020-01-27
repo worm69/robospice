@@ -41,8 +41,8 @@ public class RequestProcessor {
      * @param cacheManager
      *            the {@link CacheManager} that will be used to retrieve
      *            requests' result and store them.
-     * @param requestProgressManager
-     * @param requestRunner 
+     * @param requestProgressManager requestProgressManager
+     * @param requestRunner  requestRunner
      */
     public RequestProcessor(final CacheManager cacheManager, final RequestProgressManager requestProgressManager, final RequestRunner requestRunner) {
         this.cacheManager = cacheManager;
@@ -133,9 +133,9 @@ public class RequestProcessor {
     }
 
     /**
-     * Disable request listeners notifications for a specific request.<br/>
+     * Disable request listeners notifications for a specific request.
      * All listeners associated to this request won't be called when request
-     * will finish.<br/>
+     * will finish.
      * @param request
      *            Request on which you want to disable listeners
      * @param listRequestListener

@@ -15,7 +15,7 @@ import com.octo.android.robospice.retry.RetryPolicy;
  * {@link com.octo.android.robospice.SpiceManager#execute(SpiceRequest, Object, long, com.octo.android.robospice.request.listener.RequestListener)}
  * is considered to be more clear.
  * @author SNI
- * @param <RESULT>
+ * @param <RESULT> Generic class
  */
 public class CachedSpiceRequest<RESULT> extends SpiceRequest<RESULT> {
 

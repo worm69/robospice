@@ -61,7 +61,8 @@ public class CacheManager implements ICacheManager {
 
     /**
      * {@inheritDoc}
-     * @throws CacheCreationException
+     * @throws CacheCreationException exception
+     * @throws CacheLoadingException exception
      */
     @Override
     public <T> T loadDataFromCache(Class<T> clazz, Object cacheKey, long maxTimeInCacheBeforeExpiry) throws CacheLoadingException, CacheCreationException {
@@ -79,7 +80,7 @@ public class CacheManager implements ICacheManager {
 
     /**
      * {@inheritDoc}
-     * @throws CacheCreationException
+     * @throws CacheCreationException exception
      */
     @Override
     public boolean isDataInCache(Class<?> clazz, Object cacheKey, long maxTimeInCacheBeforeExpiry) throws CacheCreationException {
@@ -88,8 +89,8 @@ public class CacheManager implements ICacheManager {
 
     /**
      * {@inheritDoc}
-     * @throws CacheLoadingException
-     * @throws CacheCreationException
+     * @throws CacheLoadingException exception
+     * @throws CacheCreationException exception
      */
     @Override
     public Date getDateOfDataInCache(Class<?> clazz, Object cacheKey) throws CacheLoadingException, CacheCreationException {
@@ -136,7 +137,7 @@ public class CacheManager implements ICacheManager {
 
     /**
      * {@inheritDoc}
-     * @throws CacheCreationException
+     * @throws CacheCreationException exception
      */
     @Override
     public <T> List<T> loadAllDataFromCache(final Class<T> clazz) throws CacheLoadingException, CacheCreationException {

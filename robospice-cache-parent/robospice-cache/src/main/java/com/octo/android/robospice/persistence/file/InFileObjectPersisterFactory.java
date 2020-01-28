@@ -61,7 +61,7 @@ public abstract class InFileObjectPersisterFactory extends ObjectPersisterFactor
      *            {@link InFileObjectPersister#DEFAULT_ROOT_CACHE_DIR} in side
      *            the application cache folder. Will be created if doesn't exist
      *            yet.
-     * @throws CacheCreationException
+     * @throws CacheCreationException exception
      */
     public void setCacheFolder(File cacheFolder) throws CacheCreationException {
         if (cacheFolder == null) {

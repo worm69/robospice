@@ -24,12 +24,12 @@
     <url>https://github.com/worm69/robospice</url>
     <inceptionYear>2012</inceptionYear>
 
-    <scm>
-        <connection>scm:git:ssh://git@github.com:worm69/robospice.git</connection>
-        <url>git:ssh://git@github.com:worm69/robospice.git</url>
-        <developerConnection>scm:git:ssh://git@github.com:worm69/robospice.git</developerConnection>
-        <tag>robospice-parent-1.4.15</tag>
-    </scm>
+<!--    <scm>-->
+<!--        <connection>scm:git:ssh://git@github.com:worm69/robospice.git</connection>-->
+<!--        <url>git:ssh://git@github.com:worm69/robospice.git</url>-->
+<!--        <developerConnection>scm:git:ssh://git@github.com:worm69/robospice.git</developerConnection>-->
+<!--        <tag>robospice-parent-1.4.15</tag>-->
+<!--    </scm>-->
 
     <licenses>
         <license>
@@ -119,7 +119,7 @@
         <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-        <maven-release-plugin.version>2.5</maven-release-plugin.version>
+        <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <maven-javadoc-plugin.version>3.1.1</maven-javadoc-plugin.version>
         <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -195,6 +195,7 @@
                 <version>${mockwebserver.version}</version>
             </dependency>
         </dependencies>
+
     </dependencyManagement>
 
     <build>
@@ -283,8 +284,11 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
+                        <source>9</source>
+                        <target>9</target>
+                        <compilerArgs>
+                            <arg>--add-modules=java.xml.bind</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -328,6 +332,7 @@
                             </goals>
                             <phase>site</phase>
                             <configuration>
+                                <source>8</source>
                                 <sourcepath>robospice-core-parent/robospice:
                                     robospice-cache-parent/robospice-cache:
                                     extensions/robospice-spring-android-parent/robospice-spring-android:
@@ -392,7 +397,8 @@
                     <artifactId>maven-pmd-plugin</artifactId>
                     <version>${maven-pmd-plugin.version}</version>
                     <configuration>
-                        <targetJdk>1.8</targetJdk>
+                        <targetJdk>1.5</targetJdk>
+                        <verbose>true</verbose>
                     </configuration>
                     <executions>
                         <execution>
@@ -411,6 +417,9 @@
                     <version>${maven-release-plugin.version}</version>
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
+<!--                        may comemt-->
+                        <localCheckout>true</localCheckout>
+                        <pushChanges>false</pushChanges>
                     </configuration>
                 </plugin>
                 <!-- deploy javadoc and maven site to github https://github.com/github/maven-plugins/issues/22 -->

@@ -78,6 +78,7 @@ public abstract class ObjectPersisterFactory implements Persister {
      * @param clazz
      *            the class of the items that need to be saved/loaded from
      *            cache.
+     * @param <DATA> data
      * @return a {@link ObjectPersister} able to load/save instances of class
      *         clazz.
      * @throws CacheCreationException

@@ -12,9 +12,10 @@ import com.octo.android.robospice.persistence.exception.CacheSavingException;
  * directly the class {@link CacheManager} and should not have to implement this
  * interface. Defines the behavior of a cache manager, a bus of
  * {@link ObjectPersister}.
+ *
  * @author sni
  * @deprecated since version 1.4.6 of RS, easymock 3.2 makes this interface
- *             obsolete.
+ * obsolete.
  */
 @Deprecated
 public interface ICacheManager {
@@ -25,35 +26,40 @@ public interface ICacheManager {
 
     /**
      * Get all cache keys associated to a given class.
-     * @param clazz
-     *            the class for which to get all cache keys.
+     *
+     * @param clazz the class for which to get all cache keys.
+     * @param <T>   T
      * @return all cache keys associated to a given class. The empty list is
-     *         nothing is found in cache.
+     * nothing is found in cache.
      */
     <T> List<Object> getAllCacheKeys(Class<T> clazz);
 
     /**
      * Loads an instance of a class clazz, that is stored in cache under the key
      * cacheKey.
-     * @param clazz
-     *            the class of the object that is supposed to be stored in
-     *            cache.
-     * @param cacheKey
-     *            the key used to identify this item in cache.
-     * @param maxTimeInCacheBeforeExpiry
-     *            the maximum time (in ms) an item can be stored in cache before
-     *            being considered expired.
+     *
+     * @param clazz                      the class of the object that is supposed to be stored in
+     *                                   cache.
+     * @param <T>                        T
+     * @param cacheKey                   the key used to identify this item in cache.
+     * @param maxTimeInCacheBeforeExpiry the maximum time (in ms) an item can be stored in cache before
+     *                                   being considered expired.
      * @return an instance of a class clazz, that is stored in cache under the
-     *         key cacheKey. If the item is not found in cache or is older than
-     *         maxTimeInCacheBeforeExpiry, then this method will return null.
+     * key cacheKey. If the item is not found in cache or is older than
+     * maxTimeInCacheBeforeExpiry, then this method will return null.
+     * @throws CacheLoadingException  Exception
+     * @throws CacheCreationException Exception
      */
     <T> T loadDataFromCache(Class<T> clazz, Object cacheKey, long maxTimeInCacheBeforeExpiry) throws CacheLoadingException, CacheCreationException;
 
     /**
      * Loads all data stored in cache for a given class.
-     * @param clazz
-     *            the class for which to get all data stored in cache.
+     *
+     * @param clazz the class for which to get all data stored in cache.
+     * @param <T>   T
      * @return all data stored in cache for a given class.
+     * @throws CacheLoadingException  Exception
+     * @throws CacheCreationException Exceptions
      */
     <T> List<T> loadAllDataFromCache(Class<T> clazz) throws CacheLoadingException, CacheCreationException;
 
@@ -63,58 +69,56 @@ public interface ICacheManager {
      * saving it. Most {@link ObjectPersister} instances will just save the data
      * as-is, in this case, they can even return it and save it asynchronously
      * in a background thread for a better efficiency.
-     * @param data
-     *            the data to be saved in cache.
-     * @param cacheKey
-     *            the key used to identify this item in cache.
+     *
+     * @param data     the data to be saved in cache.
+     * @param cacheKey the key used to identify this item in cache.
+     * @param <T>      T
      * @return the data that was saved.
+     * @throws CacheCreationException Exception
+     * @throws CacheSavingException   Exception
      */
     <T> T saveDataToCacheAndReturnData(T data, Object cacheKey) throws CacheCreationException, CacheSavingException;
 
     /**
      * Test whether or not some data is in cache.
-     * @param clazz
-     *            the class of the object that is supposed to be stored in
-     *            cache.
-     * @param cacheKey
-     *            the key used to identify this item in cache.
-     * @param maxTimeInCacheBeforeExpiry
-     *            the maximum time (in ms) an item can be stored in cache before
-     *            being considered expired.
+     *
+     * @param clazz                      the class of the object that is supposed to be stored in
+     *                                   cache.
+     * @param cacheKey                   the key used to identify this item in cache.
+     * @param maxTimeInCacheBeforeExpiry the maximum time (in ms) an item can be stored in cache before
+     *                                   being considered expired.
      * @return a boolean indicating whether or not the given data is in the
-     *         cache.
-     * @throws CacheCreationException
+     * cache.
+     * @throws CacheCreationException Exceptionsasdawdaw
      */
     boolean isDataInCache(Class<?> clazz, Object cacheKey, long maxTimeInCacheBeforeExpiry) throws CacheCreationException;
 
     /**
      * The date at which given data has been stored last in cache.
-     * @param clazz
-     *            the class of the object that is supposed to be stored in
-     *            cache.
-     * @param cacheKey
-     *            the key used to identify this item in cache.
+     *
+     * @param clazz    the class of the object that is supposed to be stored in
+     *                 cache.
+     * @param cacheKey the key used to identify this item in cache.
      * @return the date at which data has been stored last in cache. Null if no
-     *         such data exists.
-     * @throws CacheCreationException
-     * @throws CacheLoadingException
+     * such data exists.
+     * @throws CacheCreationException Exception
+     * @throws CacheLoadingException  Exception
      */
     Date getDateOfDataInCache(Class<?> clazz, Object cacheKey) throws CacheCreationException, CacheLoadingException;
 
     /**
      * Removes a given data in the cache that is an instance of class clazz.
-     * @param clazz
-     *            the class of the data to be removed.
-     * @param cacheKey
-     *            the identifier of the data to be removed from cache.
+     *
+     * @param clazz    the class of the data to be removed.
+     * @param cacheKey the identifier of the data to be removed from cache.
      * @return a boolean indicating whether or not this data could be removed.
      */
     boolean removeDataFromCache(Class<?> clazz, Object cacheKey);
 
     /**
      * Removes all data in the cache that are instances of class clazz.
-     * @param clazz
-     *            the class of the data to be removed.
+     *
+     * @param clazz the class of the data to be removed.
      */
     void removeAllDataFromCache(Class<?> clazz);
 

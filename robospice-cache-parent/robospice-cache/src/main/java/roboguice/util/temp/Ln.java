@@ -15,9 +15,9 @@ import android.util.Log;
  * r8 or later will have verbose and debug log messages turned off. The default
  * tag is automatically set to your app's packagename, and the current context
  * (eg. activity, service, application, etc) is appended as well. You can add an
- * additional parameter to the tag using {@link #Log(String)}. Log-levels can be
+ * additional parameter to the tag using {link Log(String)}. Log-levels can be
  * programatically overridden for specific instances using
- * {@link #Log(String, boolean, boolean)}. Log messages may optionally use
+ * {link Log(String, boolean, boolean)}. Log messages may optionally use
  * {@link String#format(String, Object...)} formatting, which will not be
  * evaluated unless the log statement is output. Additional parameters to the
  * logging statement are treated as varrgs parameters to

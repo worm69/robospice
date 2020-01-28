@@ -223,10 +223,10 @@ public abstract class SpiceService extends Service {
      * single threaded or multi-threaded {@link ExecutorService} depending on
      * the number of threads returned by {@link #getThreadCount()} and will
      * assign them the priority returned by {@link #getThreadPriority()}.
-     * <p/>
+     *
      * If you override this method in your service, you can supply a custom
      * {@link ExecutorService}.
-     * <p/>
+     *
      * This feature has been implemented following a request from Riccardo
      * Ciovati.
      * @return the {@link ExecutorService} to be used to execute requests .
